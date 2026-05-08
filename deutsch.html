@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mein Deutschkurs • Moderner Online Deutschkurs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700&display=swap');
+
+        :root {
+            --primary: #2563eb;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .profile-img {
+            transition: all 0.3s ease;
+        }
+
+        .profile-card:hover .profile-img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+    <!-- Top Navigation -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 bg-blue-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold">
+                        🇩🇪</div>
+                    <div>
+                        <span class="text-2xl font-semibold tracking-tight">MeinDeutsch</span>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+                    <a href="#" class="text-blue-600 font-semibold">Startseite</a>
+                    <a href="#" class="hover:text-blue-600 transition-colors">Kurs</a>
+                    <a href="#" class="hover:text-blue-600 transition-colors">Kursmitglieder</a>
+                    <a href="#" class="hover:text-blue-600 transition-colors">Community</a>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button
+                    class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-100 rounded-3xl transition-colors flex items-center gap-2">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <div
+                    class="w-9 h-9 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center text-white text-sm font-bold">
+                    AK</div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Header -->
+        <div class="hero-bg rounded-3xl p-10 text-white mb-12 overflow-hidden relative">
+            <div class="max-w-xl">
+                <div
+                    class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-3xl text-sm mb-4">
+                    <span class="relative flex h-3 w-3">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                    142 Teilnehmer online
+                </div>
+                <h1 class="text-5xl font-bold tracking-tighter leading-none mb-4">Willkommen im<br>Mein Deutschkurs</h1>
+                <p class="text-xl opacity-90">Niveau A1–C1 • Mit echten Muttersprachlern und spannenden Projekten</p>
+
+                <div class="flex items-center gap-4 mt-10">
+                    <button onclick="alert('Kurs starten! 🎉')"
+                        class="bg-white text-blue-700 px-8 py-4 rounded-3xl font-semibold text-lg flex items-center gap-3 hover:scale-105 transition-transform">
+                        <i class="fas fa-play"></i>
+                        Jetzt starten
+                    </button>
+                    <button
+                        class="border border-white/70 hover:bg-white/10 px-8 py-4 rounded-3xl font-medium transition-colors">
+                        Kursübersicht
+                    </button>
+                </div>
+            </div>
+
+            <!-- Decorative group image -->
+            <div class="absolute bottom-0 right-12 hidden lg:block">
+                <img src="https://picsum.photos/id/1015/600/380" alt="Deutsch lernen Gruppe"
+                    class="rounded-3xl shadow-2xl -rotate-6 w-[420px] border-8 border-white/30">
+            </div>
+        </div>
+
+        <!-- Kursmitglieder Section -->
+        <div class="mb-6 flex items-center justify-between">
+            <h2 class="text-3xl font-semibold">Unsere Kursmitglieder</h2>
+            <div class="text-blue-600 font-medium flex items-center gap-2 cursor-pointer hover:underline">
+                Alle ansehen <i class="fas fa-arrow-right"></i>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="members-grid">
+            <!-- Will be populated by JS -->
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="member-modal"
+        class="fixed inset-0 z-[100] hidden bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-8 relative transform scale-95 transition-transform duration-300 shadow-2xl"
+            id="member-modal-content">
+            <button onclick="closeModal()"
+                class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 transition-colors bg-gray-100 hover:bg-gray-200 rounded-full w-10 h-10 flex items-center justify-center">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="flex flex-col sm:flex-row gap-8">
+                <img id="modal-avatar" src="" class="w-32 h-32 rounded-2xl object-cover ring-4 ring-gray-50 shadow-lg">
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <h2 id="modal-name" class="text-3xl font-bold"></h2>
+                        <span id="modal-level"
+                            class="text-sm font-mono bg-blue-100 text-blue-700 px-3 py-1 rounded-3xl"></span>
+                    </div>
+                    <p id="modal-country" class="text-gray-500 font-medium mb-6"></p>
+                    <div class="prose prose-blue max-w-none">
+                        <p id="modal-bio" class="text-gray-700 leading-relaxed"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t flex justify-end">
+                <button onclick="closeModal()"
+                    class="px-6 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-medium transition-colors">Schließen</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const members = [
+            {
+                name: "Ekaterina Tyan",
+                country: "Tadschikistan",
+                avatar: "./Photo/Ekaterina.jpg",
+                bio: "Hallo zusammen! Ich bin Ekaterina und ich bin eure Deutschlehrerin. Ich unterrichte Deutsch seit mehr als 10 Jahren. Mein Ziel ist es, euch dabei zu helfen, fließend Deutsch zu sprechen und die Kultur kennenzulernen. In meiner Freizeit lese ich gern und reise um die Welt.",
+                level: "C2 (Muttersprachlerin)",
+                role: "teacher"
+            },
+            {
+                name: "Daniyar Rymbekuly",
+                country: "Kasachstan",
+                avatar: "./Photo/Daniyar.jpeg",
+                bio: " Das ist Daniyar. Er ist 1999 in Zheskazgan in Kazakstan geboren. Er hat in Karaganda and Almaty gelebt. Am moment lebe ich in Astana. Von Beruf ist er Überzetzer. Ich arbeite als Dozent bei EAGI. Jetzt lernt er  Deutsch und Programirsprache (HTML, CSS, Java Script). Ich habe ein Katzen. Meines Katzen heißt Baksik.",
+                level: "A1.2"
+            },
+            {
+                name: "Bekarys",
+                country: "Kasachstan",
+                avatar: "./Photo/Bekarys.jpeg",
+                bio: "Mein Name ist Bekarys. Ich komme aus Kasachstan und lebe in der kleinen Stadt Kordai. Ich bin 16 Jahre alt. Ich lerne gern Deutsch und spiele außerdem gern Basketball. Ich lese Bücher, besonders Philosophie. Ich höre gern Musik, und mein Lieblingssänger ist Mac DeMarco.",
+                level: "A1.2"
+            },
+            {
+                name: "Altynbek Aleuyetdinov",
+                country: "Kasachstan",
+                avatar: "./Photo/Altynbek.jpg",
+                bio: "Das ist Altynbek. Er wurde 2004 in Saryagash in Kasachstan geboren. Von 2017 bis 2022 hat er in Kazygurt gelebt. Seit 2022 lebt er in Almaty. Er arbeitet als Webentwickler bei Kulan Oil Company. Sein Hobby ist Wandern in den Bergen.",
+                level: "A1.2"
+            },
+            {
+                name: "Tolganay Nurlybekkyzy",
+                country: "Kasachstan",
+                avatar: "https://picsum.photos/id/201/300/300",
+                bio: "Ich heiße Tolganay und ich komme aus Almaty, Kasachstan. Ich bin 20 Jahre alt. Ich studiere Informatik an der Kasachischen Nationalen Universität. In meiner Freizeit schwimme ich gern und ich lese gerne Bücher.",
+                level: "A1.2"
+            },
+            {
+                name: "Mirana",
+                country: "Kasachstan",
+                avatar: "https://picsum.photos/id/64/300/300",
+                bio: "Das ist Mirana. Sie wurde 2010 in Arys in Kasachstan geboren. Von 2020 bis 2023 hat sie in Shymkent gelebt. Seit 2023 lebt sie in Almaty. Sie arbeitet als freiberufliche Illustratorin und Grafikdesignerin. Ihr Hobby ist Zeichnen, Malen und digitales Design.",
+                level: "A1.2"
+            },
+            {
+                name: "Aisha",
+                country: "Kasachstan",
+                avatar: "https://picsum.photos/id/238/300/300",
+                bio: "Das ist Aisha. Sie wurde 2003 in Arys in Kasachstan geboren. Von 2020 bis 2023 hat sie in Shymkent gelebt. Seit 2023 lebt sie in Almaty. Sie arbeitet als freiberufliche Illustratorin und Grafikdesignerin. Ihr Hobby ist Zeichnen, Malen und digitales Design.",
+                level: "A1.2"
+            },
+            {
+                name: "Ayazhan Umutbayeva",
+                country: "Kasachstan",
+                avatar: "./Photo/Ayazhan.jpeg",
+                bio: "Das ist Ayazhan. Sie wurde 1999 in Taraz in Kasachstan geboren. Von 2020 bis 2023 hat sie in Shymkent gelebt. Seit 2023 lebt sie in Almaty. Sie arbeitet als Ärztin. Ihr Hobby ist Yoga.",
+                level: "A1.2"
+            },
+            {
+                name: "Margarita",
+                country: "Kasachstan",
+                avatar: "https://picsum.photos/id/64/300/300",
+                bio: "Das ist Margarita. Sie wurde 1991 in Almaty in Kasachstan geboren. Von 2020 bis 2023 hat sie in Shymkent gelebt. Seit 2023 lebt sie in Almaty. Sie arbeitet als Lehrerin. Ihr Hobby ist Wandern.",
+                level: "A1.2"
+            },
+            {
+                name: "Azamat",
+                country: "Kasachstan",
+                avatar: "https://picsum.photos/id/238/300/300",
+                bio: "Das ist Azamat. Er wurde 2004 in Arys in Kasachstan geboren. Von 2020 bis 2023 hat er in Shymkent gelebt. Seit 2023 lebt er in Almaty. Er arbeitet als freiberuflicher Illustrator und Grafikdesigner. Sein Hobby ist Zeichnen, Malen und digitales Design.",
+                level: "A1.2"
+            }
+        ];
+
+        const grid = document.getElementById('members-grid');
+        const modal = document.getElementById('member-modal');
+        const modalContent = document.getElementById('member-modal-content');
+
+        function openModal(index) {
+            const member = members[index];
+            document.getElementById('modal-avatar').src = member.avatar;
+            document.getElementById('modal-name').textContent = member.name;
+            document.getElementById('modal-level').textContent = member.level;
+
+            const isTeacher = member.role === 'teacher';
+            document.getElementById('modal-country').textContent = member.country + (isTeacher ? ' 🇹🇯' : ' 🇺🇳');
+            document.getElementById('modal-level').className = isTeacher ? 'text-sm font-mono bg-amber-100 text-amber-700 px-3 py-1 rounded-3xl' : 'text-sm font-mono bg-blue-100 text-blue-700 px-3 py-1 rounded-3xl';
+            document.getElementById('modal-bio').textContent = member.bio;
+
+            modal.classList.remove('hidden');
+            // Trigger reflow
+            void modal.offsetWidth;
+            modal.classList.remove('opacity-0');
+            modalContent.classList.remove('scale-95');
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Close on backdrop click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        members.forEach((member, index) => {
+            const isTeacher = member.role === 'teacher';
+            const card = document.createElement('div');
+            card.className = `bg-white rounded-3xl overflow-hidden card-hover profile-card border ${isTeacher ? 'border-amber-300 shadow-amber-100 shadow-xl ring-2 ring-amber-50' : 'border-gray-100'} cursor-pointer transition-all`;
+            card.onclick = (e) => {
+                // Prevent opening modal if a button was clicked inside the card
+                if (e.target.closest('button')) return;
+                openModal(index);
+            };
+            card.innerHTML = `
+                <div class="p-6">
+                    ${isTeacher ? '<div class="text-amber-600 text-xs font-bold uppercase tracking-wider mb-3 flex items-center gap-2"><i class="fas fa-chalkboard-teacher"></i> Unsere Lehrerin</div>' : ''}
+                    <div class="flex gap-5">
+                        <img src="${member.avatar}" 
+                             class="w-20 h-20 rounded-2xl object-cover profile-img ring-4 ${isTeacher ? 'ring-amber-50' : 'ring-white'} shadow-md">
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-semibold text-xl ${isTeacher ? 'text-amber-900' : ''}">${member.name}</h3>
+                                <span class="text-xs font-mono ${isTeacher ? 'bg-amber-100 text-amber-700' : 'bg-blue-100 text-blue-700'} px-3 py-1 rounded-3xl whitespace-nowrap ml-2">${member.level}</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mt-0.5">${member.country} ${isTeacher ? '🇹🇯' : '🇺🇳'}</p>
+                            <p class="text-gray-600 text-[15px] mt-4 leading-snug line-clamp-4">
+                                ${member.bio}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 border-t px-6 py-4 flex items-center justify-between text-sm">
+                    <button onclick="alert('Nachricht an ${member.name} gesendet! 💬')" 
+                            class="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium z-10 relative">
+                        <i class="fas fa-comment-dots"></i>
+                        <span>Nachricht</span>
+                    </button>
+                    <button class="flex items-center gap-2 text-gray-600 hover:text-gray-900 font-medium z-10 relative">
+                        <i class="fas fa-expand-alt"></i>
+                        <span>Vollansicht</span>
+                    </button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+
+</html>

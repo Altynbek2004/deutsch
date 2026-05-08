@@ -186,10 +186,10 @@
                 level: "A1.2"
             },
             {
-                name: "Tolganay Nurlybekkyzy",
+                name: "Moldir Zhumagul",
                 country: "Kasachstan",
-                avatar: "https://picsum.photos/id/201/300/300",
-                bio: "Ich heiße Tolganay und ich komme aus Almaty, Kasachstan. Ich bin 20 Jahre alt. Ich studiere Informatik an der Kasachischen Nationalen Universität. In meiner Freizeit schwimme ich gern und ich lese gerne Bücher.",
+                avatar: "https://picsum.photos/id/64/300/300",
+                bio: "Ich bin in Semei geboren in zweite August. Ich bin für zwei monaten Deutsch lernen. Ich studiere für drei Jahre im der Universität. In meine Freizeit Ich möge meine liebling kino und series sehen, also kuche desserts. Aber, mein lieblinghobby ist malen und mit mein Katze spielen.",
                 level: "A1.2"
             },
             {
@@ -240,7 +240,7 @@
             document.getElementById('modal-level').textContent = member.level;
 
             const isTeacher = member.role === 'teacher';
-            document.getElementById('modal-country').textContent = member.country + (isTeacher ? ' 🇹🇯' : ' 🇺🇳');
+            document.getElementById('modal-country').textContent = member.country + (isTeacher ? ' 🇹🇯' : ' 🇰🇿');
             document.getElementById('modal-level').className = isTeacher ? 'text-sm font-mono bg-amber-100 text-amber-700 px-3 py-1 rounded-3xl' : 'text-sm font-mono bg-blue-100 text-blue-700 px-3 py-1 rounded-3xl';
             document.getElementById('modal-bio').textContent = member.bio;
 
@@ -286,7 +286,7 @@
                                 <h3 class="font-semibold text-xl ${isTeacher ? 'text-amber-900' : ''}">${member.name}</h3>
                                 <span class="text-xs font-mono ${isTeacher ? 'bg-amber-100 text-amber-700' : 'bg-blue-100 text-blue-700'} px-3 py-1 rounded-3xl whitespace-nowrap ml-2">${member.level}</span>
                             </div>
-                            <p class="text-gray-500 text-sm mt-0.5">${member.country} ${isTeacher ? '🇹🇯' : '🇺🇳'}</p>
+                            <p class="text-gray-500 text-sm mt-0.5">${member.country} ${isTeacher ? '🇹🇯' : '🇰🇿'}</p>
                             <p class="text-gray-600 text-[15px] mt-4 leading-snug line-clamp-4">
                                 ${member.bio}
                             </p>
